@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Generated type declarations
+next-env.d.ts
+*.tsbuildinfo
+
+# Local environment and Vercel linkage
+.env*
+.vercel
+
+# Misc
+.DS_Store
+*.log
+dist/
