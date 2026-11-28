@@ -1,0 +1,781 @@
+/* ============================================================
+   まぶ鯖 公式サイト スタイル
+   ダークテーマを既定とし、data-theme="light" でライトテーマに切り替わる
+   ============================================================ */
+
+/* ===== 🎨 1. テーマ変数 ===== */
+:root {
+  --bg: #0a0f1c;
+  --panel: #111a2c;
+  --panel-2: #182642;
+  --border: #263650;
+  --text: #ecf1f8;
+  --muted: #9db1c7;
+  --accent: #6a8dff;
+  --accent-2: #2dd4bf;
+  --ok: #34c759;
+  --discord: #5865f2;
+  --discord-dark: #4752c4;
+  --radius: 18px;
+  --wrap: 1080px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --bar-bg: rgba(10, 15, 28, 0.82);
+  /* 互換エイリアス（インラインスタイル等から参照される名前） */
+  --bg-2: #182642;
+  --ink: #ecf1f8;
+  --line: #263650;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f3f5fa;
+  --panel: #ffffff;
+  --panel-2: #edf1f8;
+  --border: #d5dfec;
+  --text: #17263e;
+  --muted: #5b6f88;
+  --accent: #6a8dff;
+  --accent-2: #2dd4bf;
+  --ok: #34c759;
+  --shadow: 0 8px 24px rgba(30, 50, 90, 0.1);
+  --bar-bg: rgba(243, 245, 250, 0.88);
+  --bg-2: #edf1f8;
+  --ink: #17263e;
+  --line: #d5dfec;
+  color-scheme: light;
+}
+
+/* ===== 🧱 2. ベース ===== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", system-ui,
+    sans-serif;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(
+      900px 480px at 85% -5%,
+      rgba(45, 212, 191, 0.1) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      1100px 620px at 10% -10%,
+      rgba(106, 141, 255, 0.14) 0%,
+      transparent 55%
+    ),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(
+      900px 480px at 85% -5%,
+      rgba(45, 212, 191, 0.08) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      1100px 620px at 10% -10%,
+      rgba(106, 141, 255, 0.1) 0%,
+      transparent 55%
+    ),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Zen Maru Gothic", "Zen Kaku Gothic New", sans-serif;
+  line-height: 1.35;
+}
+
+section {
+  padding: 76px 0 8px;
+}
+
+/* ===== 🧭 3. セクション見出し ===== */
+.section-head {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.section-head .kicker {
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-size: 0.82rem;
+  background: linear-gradient(92deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.section-head h2 {
+  position: relative;
+  font-size: clamp(1.55rem, 4vw, 2.15rem);
+  margin: 6px 0 8px;
+  padding-bottom: 12px;
+}
+
+.section-head h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+.section-head p {
+  color: var(--muted);
+  margin: 0 auto;
+  max-width: 640px;
+}
+
+/* ===== 📌 4. ヘッダー ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bar-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 62px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 900;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+.logo svg {
+  width: 24px;
+  height: 24px;
+  color: var(--accent-2);
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.main-nav a {
+  padding: 8px 11px;
+  border-radius: 10px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+}
+
+.main-nav a:hover {
+  color: var(--text);
+  background: var(--panel);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+.header-cta {
+  margin-left: 2px;
+}
+
+@media (max-width: 760px) {
+  .main-nav {
+    display: none;
+  }
+  .theme-toggle {
+    margin-left: auto;
+  }
+  .header-cta {
+    margin-left: 0;
+  }
+}
+
+/* ===== 🔘 5. ボタン ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 24px;
+  border: 0;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.btn svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-discord {
+  background: var(--discord);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(88, 101, 242, 0.3);
+}
+
+.btn-discord:hover {
+  background: var(--discord-dark);
+}
+
+.btn-x {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.btn-ghost {
+  border: 2px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+}
+
+.btn-small {
+  padding: 9px 18px;
+  font-size: 0.9rem;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin: 26px 0 8px;
+}
+
+/* ===== 🌙 6. ヒーロー ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 64px 0 0;
+  background: linear-gradient(180deg, var(--panel-2), var(--bg));
+  text-align: center;
+}
+
+.hero .moon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto;
+  color: var(--accent-2);
+}
+
+.hero h1 {
+  margin: 10px 0 4px;
+  font-size: clamp(2.6rem, 8vw, 4.2rem);
+  letter-spacing: 0.06em;
+  background: linear-gradient(92deg, var(--text) 20%, #b9ccff 70%, #8ef0dd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+:root[data-theme="light"] .hero h1 {
+  background: linear-gradient(92deg, #17263e 20%, #3355aa 70%, #0f766e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero .tagline {
+  margin: 4px 0 10px;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 3vw, 1.35rem);
+  color: var(--accent);
+}
+
+:root[data-theme="light"] .hero .tagline {
+  color: #3355aa;
+}
+
+.hero .lead {
+  max-width: 680px;
+  margin: 0 auto;
+  color: var(--muted);
+}
+
+.hero .lead strong {
+  color: var(--text);
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.hero-badges span {
+  padding: 4px 13px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  color: var(--muted);
+  font-size: 0.83rem;
+  font-weight: 700;
+}
+
+.hero-figure {
+  max-width: 980px;
+  margin: 38px auto 0;
+  padding: 0 20px;
+}
+
+.hero-figure img {
+  width: 100%;
+  border-radius: var(--radius) var(--radius) 0 0;
+  box-shadow: var(--shadow);
+}
+
+/* ===== 🃏 7. カードグリッド ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards li {
+  padding: 24px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.cards .icon {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.cards h3 {
+  margin: 12px 0 6px;
+  font-size: 1.08rem;
+}
+
+.cards p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.cards li.wide {
+  grid-column: span 3;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cards li.wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .cards li.wide {
+    grid-column: span 1;
+  }
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .theme-toggle {
+    width: 36px;
+  }
+}
+
+/* ===== 📣 8. 公式メディア ===== */
+.media-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 760px) {
+  .media-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.media-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 28px 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+a.media-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-2);
+}
+
+.media-card .role {
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+
+:root[data-theme="light"] .media-card .role {
+  color: #3355aa;
+}
+
+.media-card h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.media-card p {
+  flex: 1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.media-card .go {
+  color: var(--accent-2);
+  font-weight: 900;
+}
+
+:root[data-theme="light"] .media-card .go {
+  color: #0f766e;
+}
+
+.media-card .soon {
+  color: var(--muted);
+  font-weight: 900;
+}
+
+/* ===== 🤝 9. 連携・補足リスト ===== */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+@media (max-width: 760px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.split img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.feature-list {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-list li {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  font-size: 0.95rem;
+}
+
+.feature-list strong {
+  color: var(--accent);
+}
+
+:root[data-theme="light"] .feature-list strong {
+  color: #3355aa;
+}
+
+.ok-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ok-list li {
+  padding: 7px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--panel-2);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+/* ===== ❓ 10. FAQ ===== */
+.faq {
+  display: grid;
+  gap: 12px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.faq details {
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.faq summary {
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.faq p {
+  margin: 8px 0 2px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ===== 🎫 11. 参加パネルとフッター ===== */
+.join-panel {
+  padding: 48px 24px 40px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: linear-gradient(160deg, var(--panel-2), var(--panel));
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.join-panel .moon-big {
+  width: 40px;
+  height: 40px;
+  color: var(--accent-2);
+}
+
+.join-panel h2 {
+  margin: 10px 0 8px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.join-panel p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.invite-box {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 8px 8px 8px 20px;
+  border: 1px dashed var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+}
+
+.invite-url {
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.btn-copy {
+  padding: 9px 18px;
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.copy-feedback {
+  min-height: 1.6em;
+  margin-top: 10px;
+  color: var(--accent-2);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+:root[data-theme="light"] .copy-feedback {
+  color: #0f766e;
+}
+
+footer {
+  margin-top: 84px;
+  padding: 34px 0 42px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+footer .f-name {
+  margin-bottom: 6px;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 900;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+
+footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin: 10px 0;
+}
+
+footer a {
+  text-underline-offset: 3px;
+}
+
+footer a:hover {
+  color: var(--accent);
+}
+
+/* ===== ✨ 12. 表示アニメーションと 404 ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .btn,
+  a.media-card {
+    transition: none;
+  }
+}
+
+.notfound {
+  padding: 90px 0 30px;
+  text-align: center;
+}
+
+.notfound-moon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto;
+  color: var(--accent);
+}
+
+.notfound h1 {
+  margin: 8px 0;
+  font-size: clamp(2rem, 6vw, 3rem);
+}
